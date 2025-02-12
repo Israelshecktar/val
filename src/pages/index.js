@@ -67,7 +67,7 @@ export default function Home() {
         setShowCelebration(true); // Show the celebration pop-up
 
         // 🎶 Play the local music file
-        const loveSong = new Audio("/you are the reason.mp3"); // Ensure this file exists in `public/`
+        const loveSong = new Audio("/you are the reason.mp3"); 
         loveSong.loop = true; // Keeps playing until stopped
         loveSong.play();
         setAudio(loveSong);

@@ -4,9 +4,9 @@ import styles from "../styles/FloatingHearts.module.css";
 
 export default function FloatingHearts() {
   // Number of hearts to render
-  const heartsCount = 50;
+  const heartsCount = 100;
 
-  // Some cute pastel/pinkish colors—customize as you like
+  // Some cute pastel/pinkish colors—customize
   const colors = [
     "#FF4F81",
     "#FF8FAB",

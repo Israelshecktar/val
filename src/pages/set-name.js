@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Copy } from "lucide-react"; // Import copy icon
-import toast, { Toaster } from "react-hot-toast"; // Import react-hot-toast
+import { Copy } from "lucide-react"; 
+import toast, { Toaster } from "react-hot-toast"; 
 
 export default function SetNamePage() {
   const [name, setName] = useState("");
