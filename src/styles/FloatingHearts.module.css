@@ -16,7 +16,7 @@
 */
 .heart {
   position: absolute;
-  transform: rotate(45deg);
+  transform: rotate(-90deg);
   opacity: 0;
   border-radius: 0;
 
@@ -52,7 +52,7 @@
     transform: translate(0, 0) scale(1) rotate(45deg);
   }
   100% {
-    transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(45deg);
+    transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(360deg);
     opacity: 0;
   }
 }
