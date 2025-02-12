@@ -91,21 +91,21 @@ export default function Home() {
         <meta name="description" content="Will you be my val?" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+  
       <FloatingHearts />
-
+  
       {/* Confetti container (Ensures confetti is on top) */}
       <div className="absolute inset-0 z-50 pointer-events-none">
         <canvas id="confettiCanvas"></canvas>
       </div>
-
+  
       <main className="p-6 bg-white/90 rounded-2xl shadow-xl text-center max-w-md z-10">
         {showQuestion && (
           <>
             <h1 className="text-3xl sm:text-5xl font-bold text-pink-600 mb-6">
               {displayName}, will you be my val?? 💖
             </h1>
-
+  
             {/* Buttons for Yes/No */}
             <div className="flex gap-4 justify-center mb-4 relative">
               <button
@@ -115,7 +115,7 @@ export default function Home() {
               >
                 Yes 😍
               </button>
-
+  
               <button
                 className="px-5 py-2 rounded-full text-pink-600 bg-white border border-pink-500 hover:bg-pink-50 transition"
                 onClick={handleNoClick}
@@ -126,11 +126,11 @@ export default function Home() {
             </div>
           </>
         )}
-
+  
         {showMessage && <p className="text-pink-800 font-semibold mt-4">Finally! ♥ upon all your shakara! 🎉😍</p>}
         {message && <p className="text-pink-800 font-semibold mt-4">{message}</p>}
       </main>
-
+  
       {/* Celebration Pop-Out */}
       {showCelebration && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-md z-50">
@@ -147,6 +147,11 @@ export default function Home() {
           </div>
         </div>
       )}
+  
+      {/* Footer - "Built by Shecktar" */}
+      <footer className="absolute bottom-4 text-center text-blue-700 font-semibold text-sm">
+        Built with ❤️ by Shecktar
+      </footer>
     </div>
-  );
+  );  
 }
