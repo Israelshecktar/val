@@ -19,56 +19,23 @@ export default function Home() {
   const { loverName } = router.query;
   const displayName = loverName || "Friend";
 
-  const funnyMessages = [
-    "Are you sure? 🧐",
-    "Wait... Think about this well o 😢",
-    "But... I already told my mom 😭",
-    "You're breaking my heart 💔. Is this how you do your people? 😭",
-    "Haaa! Have fear of God now 😩",
-    "Just say yes, I will buy you shawarma and Pepsi 😆",
-    "See ehn, I don’t have plan B. It’s you or nobody 😭",
-    "Omo, even Dangote no chase money like this 😂",
-    "Ah! No be juju be this? Say yes nau! 🙆🏽‍♂️",
-    "If you say no, my village people will laugh at me 😭",
-    "Do you want me to kneel down? 😩",
-    "Walahi, even your ancestors want you to say yes 😂",
-    "If you no gree, I go call elders meeting for this matter 😭",
-    "Are you doing me strong thing? 😩",
-    "Omo, my heart don break. Who will console me now? 💔😂",
-    "Please nowww, my spirit is not at peace 😭",
-    "You dey whine me? 🙃",
-    "Lai lai, I no gree. I go wait till you say yes 😂",
-    "Ah! You no wan chop wedding jollof? 😲",
-    "I go tell mummy you’re stressing me like this 😭",
-    "Even your pastor go support this one o, say yes 😆",
-    "No wahala, I dey go mountain for prayers. I go come back 😂",
-    "No vex o, but are you still thinking or na final answer be this? 😩",
-    "Haba! You want make I write WAEC again for this? 😂",
-    "God go touch your heart, I dey wait 😭",
-    "Last chance o! Don’t fall my hand! 😂",
-  ];
-
   const handleYesClick = () => {
-    setShowQuestion(false); // Hide the main question
-    setShowMessage(true); // Show "Yay! You said YES!"
+    setShowQuestion(false);
+    setShowMessage(true);
 
-    // ⏳ Wait 1 second before firing confetti & showing celebration
     setTimeout(() => {
-      // 🎊 Confetti Effect
       confetti({
         particleCount: 200,
         spread: 150,
         origin: { y: 0.6 },
       });
 
-      // Remove message & show pop-up
       setTimeout(() => {
-        setShowMessage(false); // Hide "Yay! You said YES!"
-        setShowCelebration(true); // Show the celebration pop-up
+        setShowMessage(false);
+        setShowCelebration(true);
 
-        // 🎶 Play the local music file
         const loveSong = new Audio("/you are the reason.mp3"); 
-        loveSong.loop = true; // Keeps playing until stopped
+        loveSong.loop = true;
         loveSong.play();
         setAudio(loveSong);
       }, 1000);
@@ -77,6 +44,13 @@ export default function Home() {
 
   const handleNoClick = () => {
     setNoClicks(noClicks + 1);
+    const funnyMessages = [
+      "Are you sure? 🧐", "Wait... Think about this well o 😢",
+      "But... I already told my mom 😭", "You're breaking my heart 💔",
+      "Haaa! Have fear of God now 😩", "Just say yes, I will buy you shawarma and Pepsi 😆",
+      "If you say no, my village people will laugh at me 😭", "Do you want me to kneel down? 😩"
+    ];
+
     setMessage(funnyMessages[Math.min(noClicks, funnyMessages.length - 1)]);
 
     const randomX = Math.random() * 200 - 100;
@@ -91,13 +65,13 @@ export default function Home() {
   const handleCloseCelebration = () => {
     setShowCelebration(false);
     if (audio) {
-      audio.pause(); // Stop the song when the celebration is closed
-      audio.currentTime = 0; // Reset the song
+      audio.pause();
+      audio.currentTime = 0;
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-pink-200 to-pink-400 flex items-center justify-center">
+    <div className="relative min-h-screen bg-gradient-to-br from-pink-200 to-pink-400 flex items-center justify-center px-4">
       <Head>
         <title>Valentine’s Day Surprise</title>
         <meta name="description" content="Will you be my val?" />
@@ -106,22 +80,20 @@ export default function Home() {
 
       <FloatingHearts />
 
-      {/* Confetti container (Ensures confetti is on top) */}
       <div className="absolute inset-0 z-50 pointer-events-none">
         <canvas id="confettiCanvas"></canvas>
       </div>
 
-      <main className="p-6 bg-white/90 rounded-2xl shadow-xl text-center max-w-md z-10">
+      <main className="p-6 bg-white/90 rounded-2xl shadow-xl text-center max-w-sm md:max-w-lg lg:max-w-xl w-full z-10">
         {showQuestion && (
           <>
-            <h1 className="text-3xl sm:text-5xl font-bold text-pink-600 mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600 mb-6 leading-tight">
               {displayName}, will you be my val?? 💖
             </h1>
 
-            {/* Buttons for Yes/No */}
             <div className="flex gap-4 justify-center mb-4 relative">
               <button
-                className="px-5 py-2 rounded-full text-white bg-pink-500 hover:bg-pink-600 transition"
+                className="px-4 py-2 md:px-6 md:py-3 rounded-full text-white bg-pink-500 hover:bg-pink-600 transition text-lg md:text-xl"
                 onClick={handleYesClick}
                 style={{ transform: `scale(${yesButtonScale})`, transition: "transform 0.3s ease-in-out" }}
               >
@@ -129,7 +101,7 @@ export default function Home() {
               </button>
 
               <button
-                className="px-5 py-2 rounded-full text-pink-600 bg-white border border-pink-500 hover:bg-pink-50 transition"
+                className="px-4 py-2 md:px-6 md:py-3 rounded-full text-pink-600 bg-white border border-pink-500 hover:bg-pink-50 transition text-lg md:text-xl"
                 onClick={handleNoClick}
                 style={{ ...noButtonStyle, position: "relative" }}
               >
@@ -139,32 +111,34 @@ export default function Home() {
           </>
         )}
 
-        {showMessage && <p className="text-pink-800 font-semibold mt-4">Finally! ♥ upon all your shakara! 🎉😍</p>}
-        {message && <p className="text-pink-800 font-semibold mt-4">{message}</p>}
+        {showMessage && <p className="text-pink-800 font-semibold mt-4 text-lg md:text-xl">Finally! ♥ upon all your shakara! 🎉😍</p>}
+        {message && <p className="text-pink-800 font-semibold mt-4 text-lg">{message}</p>}
       </main>
 
-      {/* Celebration Pop-Out with Music Player */}
       {showCelebration && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-md z-50 p-6 text-white">
-          <div className="bg-white p-6 rounded-3xl shadow-2xl text-center animate-pop max-w-md w-full">
-            <h1 className="text-4xl font-bold text-pink-600">🎉 CONGRATULATIONS! 🎉</h1>
-            <p className="text-lg text-gray-700 mt-2">Love is in the air! 💖💞</p>
-            <p className="text-xl text-black mt-4">Enjoy this special moment with a love song! 🎶</p>
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-md z-50 p-4">
+          <div className="bg-white p-6 md:p-8 rounded-3xl shadow-2xl text-center animate-pop max-w-sm md:max-w-lg lg:max-w-xl w-full">
+            <h1 className="text-3xl md:text-4xl font-bold text-pink-600">🎉 CONGRATULATIONS! 🎉</h1>
+            <p className="text-lg md:text-xl text-gray-700 mt-2">Love is in the air! 💖💞</p>
+            <p className="text-xl md:text-2xl text-black mt-4">Enjoy this special moment with a love song! 🎶</p>
 
             <div className="bg-pink-100 p-4 mt-4 rounded-lg flex flex-col items-center">
               <Music size={40} className="text-pink-500 animate-bounce" />
-              <p className="text-pink-600 font-medium mt-2">Now Playing: "You are the reason" - callum scott</p>
+              <p className="text-pink-600 font-medium mt-2">Now Playing: "You Are The Reason" - Calum Scott</p>
             </div>
 
-            <button className="mt-6 px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition"
-              onClick={handleCloseCelebration}>
-              <X size={20} /> Close
-            </button>
+            <button
+  className="mt-6 px-6 py-3 md:px-8 md:py-4 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition text-lg md:text-xl"
+  onClick={handleCloseCelebration}
+>
+  Close
+</button>
+
           </div>
         </div>
       )}
 
-      <footer className="absolute bottom-4 w-full text-center text-blue-700 font-semibold text-sm">
+      <footer className="absolute bottom-4 w-full text-center text-blue-700 font-semibold text-sm md:text-base">
         Built with ❤️ by Shecktar
       </footer>
     </div>
