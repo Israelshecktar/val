@@ -128,11 +128,11 @@ export default function Home() {
             </div>
 
             <button
-  className="mt-6 px-6 py-3 md:px-8 md:py-4 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition text-lg md:text-xl"
-  onClick={handleCloseCelebration}
->
-  Close
-</button>
+              className="mt-6 px-6 py-3 md:px-8 md:py-4 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition text-lg md:text-xl"
+                onClick={handleCloseCelebration}
+            >
+              Close
+            </button>
 
           </div>
         </div>
